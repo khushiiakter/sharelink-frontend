@@ -1,6 +1,7 @@
 
 import { FaBars, FaHome } from 'react-icons/fa';
 import { Link} from 'react-router-dom';
+import DashboardMain from '../components/DashboardMain';
 const Dashboard = () => {
     return (
         <div className="drawer lg:drawer-open">
@@ -15,7 +16,7 @@ const Dashboard = () => {
             
           </div>
           <div className="p-5 min-h-screen">
-            <h1>dashboard</h1>
+            <DashboardMain></DashboardMain>
           </div>
           
         </div>

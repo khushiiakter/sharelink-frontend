@@ -4,12 +4,13 @@ import {
   getAuth,
   onAuthStateChanged,
   GoogleAuthProvider,
-  signInWithPopup,
+  
   signOut,
+  signInWithPopup,
 } from "firebase/auth";
 // import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-// import axios from "axios";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -27,16 +28,17 @@ const AuthProvider = ({ children }) => {
         const user = result.user;
         setUser(user);
 
-        // const userData = {
-        //   email: user.email,
-        //   name: user.displayName,
-        //   photo: user.photoURL,
-        // };
-        // await axios.post("https://task-management-server-eight-sigma.vercel.app/users", userData);
+        const userData = {
+          email: user.email,
+          name: user.displayName,
+          photo: user.photoURL,
+          timestamp: new Date().toLocaleDateString(),
+        };
+        await axios.post("http://localhost:5000/users", userData);
 
         setError("");
         toast.success("Successfully login.");
-        
+       
       })
 
       .catch((error) => {
