@@ -5,14 +5,10 @@ const LinkModal = ({ link, onClose, onSave }) => {
   const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     title: "",
-    fileUrl: null,
+    file: null,
     visibility: "public",
     password: "",
     expiration: "",
-    createdAt: new Date(),
-    accessCount: 0,
-   
-
   });
 
   useEffect(() => {
@@ -23,11 +19,11 @@ const LinkModal = ({ link, onClose, onSave }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, file: e.target.files[0] });
+    setFormData((prev) => ({ ...prev, file: e.target.files[0] }));
   };
 
   const handleSubmit = (e) => {
@@ -37,19 +33,15 @@ const LinkModal = ({ link, onClose, onSave }) => {
     newLink.append("userId", user?.uid);
     newLink.append("userEmail", user?.email);
     newLink.append("file", formData.file);
-   
     newLink.append("visibility", formData.visibility || "public");
-  
     if (formData.visibility === "private") {
       newLink.append("password", formData.password);
     }
     if (formData.expiration) {
       newLink.append("expiration", formData.expiration);
     }
-    
     onSave(newLink);
   };
-  
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
