@@ -82,7 +82,7 @@ const DashboardMain = () => {
     setIsModalOpen(true);
   };
 
-  // Helper to copy text to clipboard
+  // Copy share URL to clipboard
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
     Swal.fire("Copied!", "Share link copied to clipboard.", "success");
@@ -106,19 +106,16 @@ const DashboardMain = () => {
           return (
             <div key={link._id} className="p-4 border rounded-lg shadow-md">
               <h3 className="font-bold">{link.title}</h3>
-              <div className="mt-2">
-                {/* Display share URL in a read-only input for better layout */}
-                <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={shareUrl}
-                    readOnly
-                    className="border p-1 flex-1 text-sm rounded"
-                  />
-                  <button onClick={() => copyToClipboard(shareUrl)}>
-                    <FiCopy size={20} className="text-blue-500" />
-                  </button>
-                </div>
+              <div className="mt-2 flex items-center gap-2">
+                <input
+                  type="text"
+                  value={shareUrl}
+                  readOnly
+                  className="border p-1 flex-1 text-sm rounded"
+                />
+                <button onClick={() => copyToClipboard(shareUrl)}>
+                  <FiCopy size={20} className="text-blue-500" />
+                </button>
               </div>
               <p className="mt-2">Visibility: {link.visibility}</p>
               <p>Expiration: {link.expiration || "N/A"}</p>
