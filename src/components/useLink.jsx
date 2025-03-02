@@ -11,7 +11,7 @@ const useLink = () => {
     const {data: links = [],  refetch} = useQuery({
         queryKey: ["links", user?.email], 
         queryFn: async() =>{
-            const res = await axios.get(`http://localhost:5000/links?email=${user?.email}`);
+            const res = await axios.get(`https://sharelink-server-sandy.vercel.app/links?email=${user?.email}`);
             return res.data;
         }
     })

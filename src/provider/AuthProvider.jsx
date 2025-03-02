@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
           photo: user.photoURL,
           timestamp: new Date().toLocaleDateString(),
         };
-        await axios.post("http://localhost:5000/users", userData);
+        await axios.post("https://sharelink-server-sandy.vercel.app/users", userData);
 
         setError("");
         toast.success("Successfully login.");
