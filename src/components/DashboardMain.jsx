@@ -8,6 +8,7 @@ import { FiCopy } from "react-icons/fi";
 import { AuthContext } from "../provider/AuthProvider";
 import useLink from "./useLink";
 import LinkModal from "./LinkModal";
+import AnalyticsPage from "../pages/AnalyticsPage";
 
 const DashboardMain = () => {
   const { user } = useContext(AuthContext);
@@ -127,8 +128,11 @@ const DashboardMain = () => {
                   <BsFillTrash3Fill size={18} />
                 </button>
               </div>
+              <AnalyticsPage linkId={link._id}></AnalyticsPage>
             </div>
+              
           );
+          
         })}
       </div>
 
@@ -143,7 +147,9 @@ const DashboardMain = () => {
           isEditing={isEditing}
         />
       )}
+      
     </div>
+    
   );
 };
 
