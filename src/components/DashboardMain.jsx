@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { TiEdit } from "react-icons/ti";
 import { FiCopy } from "react-icons/fi";
@@ -17,22 +17,12 @@ const DashboardMain = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
-  // Ensure `links` is always an array
-  const safeLinks = Array.isArray(links) ? links : [];
-
   // Mutation for adding a new link
   const addLinkMutation = useMutation({
     mutationFn: async (newLink) => {
-      const formData = new FormData();
-      formData.append("userId", newLink.userId);
-      formData.append("userEmail", newLink.userEmail);
-      formData.append("title", newLink.title);
-      formData.append("visibility", newLink.visibility);
-      formData.append("password", newLink.password);
-      formData.append("expiration", newLink.expiration);
-      formData.append("file", newLink.file); // Append the file
-
-      return await axios.post("https://sharelink-server-sandy.vercel.app/links", formData);
+      return await axios.post("http://localhost:5000/links", newLink
+       
+);
     },
     onSuccess: () => {
       refetch();
@@ -46,7 +36,7 @@ const DashboardMain = () => {
   const updateLinkMutation = useMutation({
     mutationFn: async (updatedLink) => {
       const { _id, ...linkData } = updatedLink;
-      return await axios.put(`https://sharelink-server-sandy.vercel.app/links/${_id}`, linkData);
+      return await axios.put(`http://localhost:5000/links/${_id}`, linkData);
     },
     onSuccess: () => {
       refetch();
@@ -71,7 +61,7 @@ const DashboardMain = () => {
       });
 
       if (result.isConfirmed) {
-        await axios.delete(`https://sharelink-server-sandy.vercel.app/links/${linkId}`);
+        await axios.delete(`http://localhost:5000/links/${linkId}`);
         refetch();
         Swal.fire("Deleted!", "Your link has been deleted.", "success");
       }
@@ -112,8 +102,8 @@ const DashboardMain = () => {
 
       {/* Links List */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {safeLinks.map((link) => {
-          const shareUrl = `https://sharelink-server-sandy.vercel.app/links/${link._id}`;
+        {links?.map((link) => {
+          const shareUrl = `http://localhost:5000/links/${link._id}`;
           return (
             <div key={link._id} className="p-4 border rounded-lg shadow-md">
               <h3 className="font-bold">{link.title}</h3>
@@ -130,12 +120,12 @@ const DashboardMain = () => {
               </div>
               <p className="mt-2">Visibility: {link.visibility}</p>
               <p>Expiration: {link.expiration || "N/A"}</p>
-              <div className="flex justify-between border-t pt-1.5 mt-2">
+              <div className="flex justify-between border-t pt-1.5  mt-2">
                 <AnalyticsPage linkId={link._id}></AnalyticsPage>
                 <div className="flex gap-2 items-center">
                   <button
                     onClick={() => handleEditLink(link)}
-                    className="text-xl text-gray-600 hover:text-red-700"
+                    className="text-xl  text-gray-600 hover:text-red-700"
                   >
                     <TiEdit size={20} />
                   </button>
