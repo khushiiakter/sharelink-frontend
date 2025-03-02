@@ -23,6 +23,9 @@ const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
 
   const handleGoogleLogin = async () => {
+    googleProvider.setCustomParameters({
+      prompt: "select_account",
+    });
     signInWithPopup(auth, googleProvider)
       .then(async (result) => {
         const user = result.user;

@@ -120,10 +120,10 @@ const DashboardMain = () => {
               <p className="mt-2">Visibility: {link.visibility}</p>
               <p>Expiration: {link.expiration || "N/A"}</p>
               <div className="flex justify-between mt-2">
-                <button onClick={() => handleEditLink(link)} className="text-yellow-500">
+                <button onClick={() => handleEditLink(link)} className="text-lg text-gray-600 hover:text-red-700">
                   <TiEdit size={20} />
                 </button>
-                <button onClick={() => deleteLinkMutation.mutate(link._id)} className="text-red-500">
+                <button onClick={() => deleteLinkMutation.mutate(link._id)} className="text-lg text-gray-600 hover:text-red-700">
                   <BsFillTrash3Fill size={18} />
                 </button>
               </div>
@@ -137,9 +137,10 @@ const DashboardMain = () => {
         <LinkModal
           link={selectedLink}
           onClose={() => setIsModalOpen(false)}
-          onSave={(link) =>
-            isEditing ? updateLinkMutation.mutate(link) : addLinkMutation.mutate(link)
+          onSave={(linkData) =>
+            isEditing ? updateLinkMutation.mutate(linkData) : addLinkMutation.mutate(linkData)
           }
+          isEditing={isEditing}
         />
       )}
     </div>
