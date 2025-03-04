@@ -10,18 +10,7 @@ const Navbar = () => {
   
 
   
-  const navOptions = (
-    <>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      
-      <li>
-        <Link to='/dashboard'>Dashboard</Link>
-      </li>
-      
-    </>
-  );
+  
 
   return (
     <div className="navbar   container mx-auto     ">
@@ -47,23 +36,23 @@ const Navbar = () => {
               />
             </svg>
           </div>
-          <ul
+          {/* <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <ul className="menu menu-horizontal  px-1 ">{navOptions}</ul>
-          </ul>
+          </ul> */}
         </div>
         <a className="flex items-center md:gap-1 ">
           {/* <img src={logo} className="h-7 md:block hidden" alt="" /> */}
           <p className="md:text-2xl text-lg font-bold">ShareLink</p>
         </a>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      {/* <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal font-semibold  px-1 ">
           {navOptions}
         </ul>
-      </div>
+      </div> */}
       <div className="md:block hidden"></div>
       <div className="navbar-end">
         

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const fetchAccessCount = async (linkId) => {
-  const { data } = await axios.get(`https://sharelink-server-sandy.vercel.app/analytics/${linkId}`);
+  const { data } = await axios.get(`https://sharelink-server-five.vercel.app/analytics/${linkId}`);
   return data;
 };
 

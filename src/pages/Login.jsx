@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const { handleGoogleLogin, user } = useContext(AuthContext);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <>
@@ -23,7 +23,7 @@ const Login = () => {
                     </div>
                 </div>
             </dialog>
-            {user && navigate("/dashboard")}
+            {/* {user && navigate("/dashboard")} */}
         </>
     );
 };
